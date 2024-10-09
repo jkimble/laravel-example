@@ -2,13 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Job;
-
-
+use App\Http\Controllers\RegisterUserController;
+use App\Http\Controllers\JobController;
 
 
 Route::get('/', function () {
     return view('home');
 });
+
+Route::resource('jobs', JobController::class);
+/*
 // index
 Route::get('/jobs', function () {
     $jobs = Job::with('employer')->cursorPaginate(3);
@@ -89,7 +92,9 @@ Route::delete('/jobs/{job}', function (Job $job) {
     //301
     return redirect('/jobs');
 });
-
+*/
+//Auth
+Route::get('/register', [RegisterUserController::class, 'create']);
 
 Route::get('/contact', function () {
     return view('contact');
