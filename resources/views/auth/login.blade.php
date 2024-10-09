@@ -16,29 +16,13 @@
   }
   ```
 -->
-<form method="POST" action="/jobs">
+<form method="POST" action="/login">
     @csrf
     <div class="space-y-12">
       <div class="border-b border-gray-900/10 pb-12">
-        <h2 class="text-base font-semibold leading-7 text-gray-900">Register new user</h2>
+        <h2 class="text-base font-semibold leading-7 text-gray-900">Login</h2>
   
         <div class="mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-          <x-form-field>
-            <x-form-label for="first_name">First Name</x-form-label>
-            <div class="mt-2">
-              <x-form-input name="first_name" id="first_name" required />
-              <x-form-error name="first_name" />
-            </div>
-          </x-form-field>
-
-          <x-form-field>
-            <x-form-label for="last_name">Last Name</x-form-label>
-            <div class="mt-2">
-              <x-form-input name="last_name" id="last_name" required />
-              <x-form-error name="last_name" />
-            </div>
-          </x-form-field>
-
           <x-form-field>
             <x-form-label for="email">Email</x-form-label>
             <div class="mt-2">
