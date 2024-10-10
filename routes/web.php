@@ -11,7 +11,20 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::resource('jobs', JobController::class);
+/*
+Route::resource('jobs', JobController::class); // one liner, can work but cannot efficiently use middleware this way
+Route::resource('jobs', JobController::class)->except(['index', 'show'])->middleware('auth'); // auths all pages except these two, efficient but may be too limiting 
+*/
+
+Route::get('/jobs', [JobController::class, 'index']);
+Route::get('/jobs/create', [JobController::class, 'create']);
+Route::post('/jobs', [JobController::class, 'store'])->middleware('auth');
+Route::get('/jobs/{job}', [JobController::class, 'show']);
+// Route::get('/jobs/{job}/edit', [JobController::class, 'edit'])->middleware(['auth'])->can('edit-job', 'job'); use this when using Gates
+Route::get('/jobs/{job}/edit', [JobController::class, 'edit'])->middleware(['auth'])->can('edit', 'job'); //use this when using policy related to model (policy function is names edit)
+Route::patch('/jobs/{job}', [JobController::class, 'update']);
+Route::delete('/jobs/{job}', [JobController::class, 'destroy']);
+
 /*
 // index
 Route::get('/jobs', function () {
@@ -94,6 +107,7 @@ Route::delete('/jobs/{job}', function (Job $job) {
     return redirect('/jobs');
 });
 */
+
 //Auth
 Route::get('/register', [RegisterUserController::class, 'create']);
 Route::post('/register', [RegisterUserController::class, 'store']);

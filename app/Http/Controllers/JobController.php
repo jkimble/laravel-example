@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Job;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
+use App\Models\User;
 
 class JobController extends Controller
 {
@@ -50,6 +53,13 @@ class JobController extends Controller
     public function edit(Job $job)
     {
         //$job = job::find($id);
+
+        /*if (Auth::guest()) {
+            return redirect('/login');
+        }*/
+        
+        //Gate::authorize('edit-job', ['job' => $job]); // authorize auto aborts unless exception is defined
+
         return view('jobs.edit', ['job' => $job]);
     }
 
