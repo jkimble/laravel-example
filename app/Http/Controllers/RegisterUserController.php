@@ -4,20 +4,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-Use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Password;
+use App\Models\User;
 
 class RegisterUserController extends Controller
 {
-    public function create() {
+    public function create()
+    {
         return view('auth.register');
     }
 
-    public function store() {
+    public function store()
+    {
         $attributes = request()->validate([
-            'first_name' => ['re uired'],
+            'first_name' => ['required'],
             'last_name' => ['required'],
             'email' => ['required', 'email'],
-            'password' => ['required', Password::min(6), 'confirmed']
+            'password' => ['required', 'confirmed']
         ]);
 
         $user = User::create($attributes);
