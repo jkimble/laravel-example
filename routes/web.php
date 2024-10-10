@@ -11,6 +11,13 @@ Route::get('/', function () {
     return view('home');
 });
 
+// Route::get('test', function () {
+//     //return view('mail.job-posted');
+//     \Illuminate\Support\Facades\Mail::to('justin@embold.com')->send(
+//         new \App\Mail\JobPosting()
+//     );
+// });
+
 /*
 Route::resource('jobs', JobController::class); // one liner, can work but cannot efficiently use middleware this way
 Route::resource('jobs', JobController::class)->except(['index', 'show'])->middleware('auth'); // auths all pages except these two, efficient but may be too limiting 
